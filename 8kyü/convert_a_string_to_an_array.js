@@ -6,6 +6,5 @@ function stringToArray(string) {
   return string.split(" ");
 }
 
-// Example usage:
 console.log(stringToArray("I love programming")); // ["I", "love", "programming"]
 console.log(stringToArray("Hello World")); // ["Hello", "World"]
