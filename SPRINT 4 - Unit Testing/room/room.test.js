@@ -119,4 +119,38 @@ describe("Room Class Tests", () => {
 
     expect(totalOccupancy).toBeCloseTo(expectedOccupancy, 2);
   });
+
+  test("availableRooms should return only the rooms that are available in the given date range", () => {
+    const booking1 = new Booking(
+      "John Doe",
+      "john@example.com",
+      new Date("2024-09-01"),
+      new Date("2024-09-10")
+    );
+    const booking2 = new Booking(
+      "Jane Smith",
+      "jane@example.com",
+      new Date("2024-09-05"),
+      new Date("2024-09-15")
+    );
+    const booking3 = new Booking(
+      "Alice Johnson",
+      "alice@example.com",
+      new Date("2024-09-10"),
+      new Date("2024-09-20")
+    );
+
+    const room1 = new Room("Room 1", [booking1], 10000, 10);
+    const room2 = new Room("Room 2", [booking2], 10000, 10);
+    const room3 = new Room("Room 3", [booking3], 10000, 10);
+    const room4 = new Room("Room 4", [], 10000, 10); // Sin reservas
+
+    const startDate = new Date("2024-09-01");
+    const endDate = new Date("2024-09-15");
+
+    const rooms = [room1, room2, room3, room4];
+    const availableRooms = Room.availableRooms(rooms, startDate, endDate);
+
+    expect(availableRooms).toEqual([room4]);
+  });
 });

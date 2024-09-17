@@ -38,6 +38,14 @@ class Room {
     return totalOccupancy / rooms.length;
   }
 
-  static availableRooms(rooms, startDate, endDate) {}
+  static availableRooms(rooms, startDate, endDate) {
+    return rooms.filter((room) => {
+      return !room.bookings.some((booking) => {
+        const overlapStart = new Date(Math.max(startDate, booking.checkIn));
+        const overlapEnd = new Date(Math.min(endDate, booking.checkOut));
+        return overlapStart <= overlapEnd;
+      });
+    });
+  }
 }
 module.exports = Room;
