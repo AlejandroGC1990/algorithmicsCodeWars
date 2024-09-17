@@ -6,7 +6,11 @@ class Room {
     this.discount = discount;
   }
 
-  isOccupied(date) {}
+  isOccupied(date) {
+    return this.bookings.some((booking) => {
+      return date >= booking.checkIn && date <= booking.checkOut;
+    });
+  }
 
   occupancyPercentage(startDate, endDate) {}
 

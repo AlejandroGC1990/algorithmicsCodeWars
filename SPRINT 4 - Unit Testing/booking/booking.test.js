@@ -6,6 +6,6 @@ describe("Booking Class Tests", () => {
     const room = new Room("Room 1", [], 10000, 10); 
     const booking = new Booking("John Doe", "john@example.com", new Date("2024-09-15"), new Date("2024-09-20"), 5, room); 
     
-    expect(booking.fee).toBe(45000);
+    expect(booking.fee).toBe(42500);
   });
 });

@@ -8,6 +8,14 @@ class Booking {
     this.room = room;
   }
 
-  get fee() {}
+  get fee() {
+    const days = (this.checkOut - this.checkIn) / (1000 * 60 * 60 * 24); 
+    const roomCost = this.room.rate * days; 
+
+    const totalDiscount = (this.room.discount + this.discount) / 100; 
+    const finalCost = roomCost * (1 - totalDiscount); 
+
+    return Math.round(finalCost); 
+  }
 }
 module.exports = Booking;
