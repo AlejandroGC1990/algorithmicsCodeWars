@@ -27,7 +27,16 @@ class Room {
     return (occupiedDays / totalDays) * 100;
   }
 
-  static totalOccupancyPercentage(rooms, startDate, endDate) {}
+  static totalOccupancyPercentage(rooms, startDate, endDate) {
+    if (rooms.length === 0) return 0;
+
+    const totalOccupancy = rooms.reduce((acc, room) => {
+      const occupancy = room.occupancyPercentage(startDate, endDate);
+      return acc + occupancy;
+    }, 0);
+
+    return totalOccupancy / rooms.length;
+  }
 
   static availableRooms(rooms, startDate, endDate) {}
 }
