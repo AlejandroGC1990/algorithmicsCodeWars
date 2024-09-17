@@ -12,7 +12,20 @@ class Room {
     });
   }
 
-  occupancyPercentage(startDate, endDate) {}
+  occupancyPercentage(startDate, endDate) {
+    const totalDays =
+      Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+    const occupiedDays = this.bookings.reduce((acc, booking) => {
+      const overlapStart = new Date(Math.max(startDate, booking.checkIn));
+      const overlapEnd = new Date(Math.min(endDate, booking.checkOut));
+      const overlapDays = Math.max(
+        0,
+        (overlapEnd - overlapStart) / (1000 * 60 * 60 * 24) + 1
+      );
+      return acc + overlapDays;
+    }, 0);
+    return (occupiedDays / totalDays) * 100;
+  }
 
   static totalOccupancyPercentage(rooms, startDate, endDate) {}
 
