@@ -143,7 +143,7 @@ describe("Room Class Tests", () => {
     const room1 = new Room("Room 1", [booking1], 10000, 10);
     const room2 = new Room("Room 2", [booking2], 10000, 10);
     const room3 = new Room("Room 3", [booking3], 10000, 10);
-    const room4 = new Room("Room 4", [], 10000, 10); // Sin reservas
+    const room4 = new Room("Room 4", [], 10000, 10);
 
     const startDate = new Date("2024-09-01");
     const endDate = new Date("2024-09-15");
